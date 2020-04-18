@@ -1,0 +1,83 @@
+
+<body>
+
+<form class="form-container" [formGroup]="menuForm">
+    <h1>Tambah Dan Edit Masakkan</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Nama Masakkan</mat-label>
+      <input
+        matInput
+        placeholder="Nama Masakkan"
+        name="menuName"
+        id="menuName"
+        formControlName="menuName"
+      />
+      <mat-error *ngIf="menuName.invalid && menuName.touched">Wajib diisi</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Deskripsi Masakkan</mat-label>
+      <input
+        matInput
+        placeholder="Cerita/Bahan tentang Masakkan ini"
+        name="menuDesc"
+        id="menuDesc"
+        
+        formControlName="menuDesc"
+        
+      />
+      <mat-error *ngIf="menuDesc.invalid && menuDesc.touched">Wajib Diisi</mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Durasi Masak</mat-label>
+      <input
+        matInput
+        placeholder="Estimasi Waktu Masak"
+        name="duration"
+        id="duration"
+        
+        formControlName="duration"
+      />
+      <mat-error *ngIf="duration.invalid && duration.touched">Wajib Diisi maksimal 45 menit</mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+        <mat-label>Harga</mat-label>
+        <input
+          matInput
+          placeholder="Harga Masakkan"
+          name="price"
+          id="price"
+          
+          formControlName="price"
+        />
+        <mat-error *ngIf="price.invalid && price.touched">wajib diisi</mat-error>
+      </mat-form-field>
+      <br/>
+      <mat-checkbox formControlName="check">{{ 
+        update
+          ? "I want to update this user"
+          : "I agree to the terms and conditions"
+      }}</mat-checkbox>
+
+  
+      <div class="button-container">
+        <button type="submit" mat-raised-button color="warn" *ngIf="update" (click)="deleteMenu()">
+          Delete
+        </button>
+        <span class="spacer"></span>
+        <button type="submit" mat-raised-button color="primary" [disabled]="menuForm.invalid" *ngIf="!update"
+          (click)="postMenu()">
+          Add Menu
+        </button>
+        <button type="submit" mat-raised-button color="accent" [disabled]="menuForm.invalid" *ngIf="update"
+          (click)="updateMenu()">
+          Update
+        </button>
+        </div>
+  </form>
+
+</body>
